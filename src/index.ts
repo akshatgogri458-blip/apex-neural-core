@@ -1,4 +1,5 @@
-export interface Env { AI: Ai }
+interface AIModelBinding { run(model: string, options: { messages: Array<{role:"system" | "user"; content:string}>; max_tokens:number; temperature:number }): Promise<{response?: string}> }
+export interface Env { AI: AIModelBinding }
 const MODEL = "@cf/google/gemma-4-26b-a4b-it";
 const VERIFY_URL = "https://apex-forge-intelligence.floot.app/_api/apex/gateway-verify";
 const json=(data:unknown,status=200)=>new Response(JSON.stringify(data),{status,headers:{"Content-Type":"application/json","Cache-Control":"no-store","X-Content-Type-Options":"nosniff"}});
@@ -29,4 +30,4 @@ export default {
   if(!result)return json({error:"MODEL_RESPONSE_EMPTY"},502);
   return json({response:result,model:MODEL,mode:"reasoning_only"});
  }
-} satisfies ExportedHandler<Env>;
+};

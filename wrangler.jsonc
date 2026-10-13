@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "apex-neural-core",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-10",
+  "workers_dev": true,
+  "ai": { "binding": "AI" },
+  "observability": { "enabled": false }
+}

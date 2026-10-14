@@ -6,7 +6,7 @@ A signed, short-lived, one-use permission token is issued by the authenticated A
 
 ## One-click deployment
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/akshatgogri458-blip/APEX/tree/main/cloudflare-brain)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/akshatgogri458-blip/apex-neural-core)
 
 Cloudflare may request sign-in and confirmation of the Worker name, account and free Workers AI binding. **Do not select a paid plan.** The resulting `https://<worker-name>.<subdomain>.workers.dev` URL is needed to connect this Worker to your private APEX Forge user account.
 
@@ -18,3 +18,7 @@ Cloudflare may request sign-in and confirmation of the Worker name, account and 
 Cloudflare Workers Free / Workers AI have request, inference and usage limits. Only user-approved authenticated inference is authorized; paid usage is not enabled by this repository. The model `@cf/google/gemma-4-26b-a4b-it` must be available to the deploying account.
 
 **Known limitation:** Verification depends on Floot-hosted APEX Forge being online. Floot's nonrecurring free hosting credits cannot guarantee uninterrupted access. Move verification to a sustainable free host before relying on continuous autonomy.
+
+## Verification and recovery
+
+Run `npm ci` then `npm run check`. See [the evidence ledger](docs/VERIFICATION.md) for verified findings and remaining gates. Tests do not invoke Cloudflare or prove live inference.

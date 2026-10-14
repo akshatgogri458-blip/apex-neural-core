@@ -2,18 +2,23 @@ name: Verify APEX Worker build
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
         with:
-          bun-version: "1.2.15"
-      - name: Install dependencies (same as Cloudflare)
-        run: bun install
-      - name: Type-check Worker
-        run: bun run typecheck
+          node-version: '24'
+          cache: npm
+      - name: Reproducible install
+        run: npm ci
+      - name: Type checking and negative security tests
+        run: npm run check
+      - name: Package Worker without deployment or inference
+        run: npx wrangler deploy --dry-run
